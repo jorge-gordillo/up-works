@@ -1,0 +1,86 @@
+{
+   "users" : {
+      "uid": "",
+      "email": "",
+      "password": "",
+      "role": ""
+   },
+   "admins": {
+      "uid": "",
+      "name": ""
+   },
+   "regulars": {
+      "uid": "",
+      "matricula": "",
+      "name": "",
+      "photo": "",
+      "personal_email": "",
+      "birthday": "",
+      "phone": 962,
+      "ocupation": "",
+      "abstract": "",
+      "relocate": false,
+      "applications" : [
+         {
+            "id": 1,
+            "id_job": 155,
+            "state": "pending",
+            "message": "",
+            "title": "",
+            "name": "",
+            "logo": ""
+         }
+      ]
+   },
+   "companies" : {
+      "uid": 1,
+      "name": "",
+      "logo": "",
+      "birthday": "",
+      "country": "",
+      "address": "",
+      "web": ""
+
+   },
+   "jobs": {
+      "id_job": 1,
+      "uid": 616,
+      "title": "",
+      "salary": 10000,
+      "ubication": "",
+      "type": "",
+      "desription": "",
+      "status": true
+   },
+   "pages": {
+      "site": {
+         "home": "/",
+         "about": "/acerca-de",
+         "noticePrivacy": "/aviso-de-privacidad",
+         "termsConditions": "/terminos-y-condiciones",
+         "FAQ": "preguntas-frecuentes",
+         "login": "/login",
+         "dashboard": "/dashboard",
+         "job": "/empleo/:workId",
+         "profile": "/perfil",
+         "applications": "/postulaciones",
+         "unauthorized": "/no-autorizado",
+         "notFoundPage": "/*"
+      },
+      "regular": {
+
+      },
+      "company": {
+         "jobs": "/empresa/jobs",
+         "jobInfo": "/empesa/:idJob",
+         "aplications": "/empresa/:idJob/postulaciones",
+         "applicant": "/empresa/:idApplicant",
+         "newJob": "/empresa/nuevo-vacante"
+      },
+      "admin": {
+         "users": "/admin/usuarios",
+         "business": "/admin/empresas"
+      }
+   }
+
+}
