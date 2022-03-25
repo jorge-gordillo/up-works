@@ -1,20 +1,39 @@
 import { NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { roles, routes } from "../../helpers";
-import { DashboardRounded, DashboardOutlined, SearchRounded, PersonRounded, PersonOutlineRounded, CheckRounded, CheckCircleRounded, LoginRounded, HomeRounded, WorkRounded, WorkOutlineRounded, AdminPanelSettings, AccountCircleOutlined, AssignmentIndOutlined, AssignmentIndRounded, InfoTwoTone } from "@mui/icons-material";
+import {
+	DashboardRounded,
+	DashboardOutlined,
+	SearchRounded,
+	PersonRounded,
+	PersonOutlineRounded,
+	CheckRounded,
+	CheckCircleRounded,
+	LoginRounded,
+	HomeRounded,
+	WorkRounded,
+	WorkOutlineRounded,
+	AdminPanelSettings,
+	AccountCircleOutlined,
+	AssignmentIndOutlined,
+	AssignmentIndRounded,
+	InfoTwoTone,
+} from "@mui/icons-material";
 import { Navbar, Nav, Container } from "react-bootstrap";
-
-import "./NavbarApp.css";
-
 
 const NavbarApp = () => {
 	const { isLogged, hasRole, logout } = useAuth();
 	const { pathname } = useLocation();
-
 	return (
-		<Navbar expand="lg" className="nav-bg" variant="dark">
+		<Navbar
+			expand="lg"
+			variant="dark"
+			bg="dark"
+			sticky="top"
+			className="nav-bg"
+		>
 			<Container fluid>
-				<Navbar.Brand as={NavLink} to={routes.home}>
+				<Navbar.Brand as={NavLink} to={routes.site}>
 					UpWorks
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -22,102 +41,56 @@ const NavbarApp = () => {
 					<Nav className="mx-auto">
 						{isLogged() && (
 							<>
-								<Nav.Link as={NavLink} to={routes.Dashboard}>
-                    {pathname === routes.Dashboard ? (
-                      <DashboardRounded />
-                    ) : (
-                      <DashboardOutlined />
-                    )}
-                    Inicio
-                  </Nav.Link>
-                  <Nav.Link as={NavLink} to={routes.Search}>
-                    <SearchRounded /> Buscar
-                  </Nav.Link>
+								<Nav.Link as={NavLink} to={routes.site}>
+									Inicio
+								</Nav.Link>
+
 								{hasRole(roles.regular) && (
 									<>
-                           <Nav.Link as={NavLink} to={routes.applications}>
-                              Postulaciones
-                           </Nav.Link>
+										<Nav.Link as={NavLink} to={routes.applications}>
+											Postulaciones
+										</Nav.Link>
 									</>
-                        )}
-                        
+								)}
 								{hasRole(roles.admin) && (
 									<>
-									<NavDropdown
-									  title={
-										<>
-										  <AdminPanelSettingsIcon />
-										  Admin
-										</>
-									  }
-									>
-									  <NavDropdown.Item
-										as={NavLink}
-										to={routes.admin.Users}
-									  >
-										Registro Alumnos
-									  </NavDropdown.Item>
-									  <NavDropdown.Item
-										as={NavLink}
-										to={routes.admin.Business}
-									  >
-										Registro Empresa
-									  </NavDropdown.Item>
-									</NavDropdown>
-								  </>
+										<Nav.Link as={NavLink} to={routes.admin.users}>
+											Usuarios
+										</Nav.Link>
+										<Nav.Link as={NavLink} to={routes.admin.business}>
+											Empresas
+										</Nav.Link>
+									</>
 								)}
 								{hasRole(roles.company) && (
 									<>
-									<Nav.Link as={NavLink} to={routes.company.Jobs}>
-									  {pathname === routes.company.Jobs ? (
-										<WorkRounded />
-									  ) : (
-										<WorkOutlineRounded />
-									  )}
-									  Empleos
-									</Nav.Link>
-									<Nav.Link as={NavLink} to={routes.company.Application}>
-									  {pathname === routes.company.Application ? (
-										<ContactMailIcon />
-									  ) : (
-										<ContactMailRoundedIcon />
-									  )}
-									  Aplicados
-									  </Nav.Link>
-									<Nav.Link as={NavLink} to={routes.company.JobInfo}>
-									  {pathname === routes.company.JobInfo ? (
-										<PersonRounded />
-									  ) : (
-										<PersonOutlineRounded />
-									  )}
-									  Perfil
-									</Nav.Link>
-								  </>
-                        )}
-                        
-                        <Nav.Link as={NavLink} to={routes.profile}>
+										<Nav.Link as={NavLink} to={routes.company.vacancies}>
+											Vacantes
+										</Nav.Link>
+									</>
+								)}
+
+								<Nav.Link as={NavLink} to={routes.profile}>
 									Perfil
-                        </Nav.Link>
+								</Nav.Link>
 							</>
 						)}
 					</Nav>
 					<Nav>
 						{!isLogged() ? (
 							<>
-								<Nav.Link as={NavLink} to={routes.site}>
-								<HomeRounded />Inicio
+								<Nav.Link as={NavLink} to={routes.home}>
+									Inicio
 								</Nav.Link>
 								<Nav.Link as={NavLink} to={routes.login}>
-							    <LoginRounded />Login
+									Login
 								</Nav.Link>
 								<Nav.Link as={NavLink} to={routes.about}>
-									<InfoTwoTone /> About
+									About
 								</Nav.Link>
 							</>
 						) : (
-							<Nav.Link onClick={() => logout()}>
-								Cerrar sesion
-							</Nav.Link>
+							<Nav.Link onClick={() => logout()}>Cerrar sesion</Nav.Link>
 						)}
 					</Nav>
 				</Navbar.Collapse>
@@ -126,4 +99,4 @@ const NavbarApp = () => {
 	);
 };
 
-export default NavbarApp
+export default NavbarApp;
