@@ -51,8 +51,9 @@ const Login = () => {
       <>
          <Row>
 			<Col md={6} className="mx-auto mt-5">
-				<Card>
-					<Card.Body>
+				<Card border="success" className="text-center" style={{paddingBottom: '2.6rem'}} >
+				<Card.Title>Iniciar Sesión</Card.Title>
+					<Card.Body >
 						<Form onSubmit={handleSubmit}>
 							<Form.Group className="mb-3">
 								<Form.Label>Correo</Form.Label>
@@ -102,6 +103,7 @@ const Login = () => {
 				)}
 			</Col>
       </Row>
+	  
       </>
    )
 }
