@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-import { routes } from "../../helpers";
 import Typography from "@mui/material/Typography";
 
 const NotFoundPage = () => {
