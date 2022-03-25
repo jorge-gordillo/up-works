@@ -1,13 +1,13 @@
 import '@babel/polyfill'
+require('dotenv').config()
+import express, { json, urlencoded } from 'express'
 import { createAdmin } from './controllers/admin.control'
-import express, { json } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import pkg from '../package.json'
 
 var corsOptions = {
 	origin: 'http:localhost:3000',
-	optionsSuccessStatus: 200
 }
 
 //* Importing routes
@@ -15,6 +15,8 @@ import usersRoutes from './routes/users.routes'
 import regularRoutes from './routes/regular.routes'
 import adminRoutes from './routes/admin.routes'
 import companyRoutes from './routes/company.routes'
+import jobRoutes from './routes/jobs..routes'
+import apllicationRoutes from './routes/application.routes.js'
 
 //* Initialization
 const app = express()
@@ -24,6 +26,7 @@ app.set("pkg", pkg)
 app.use(cors())
 app.use(morgan('dev'))
 app.use(json())
+app.use(urlencoded({ extended: true }))
 
 //* Ruta raiz
 app.get('/', (req, res) => {
@@ -32,14 +35,16 @@ app.get('/', (req, res) => {
 		author: app.get("pkg").author,
 		description: app.get("pkg").description,
 		verson: app.get("pkg").version,
-	});
+	})
 })
 
 //* Routes
-app.use("/api/auth", usersRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/regular", regularRoutes);
-app.use("/api/company", companyRoutes);
+app.use("/api/v1/auth", usersRoutes)
+app.use("/api/v1/admins", adminRoutes)
+app.use("/api/v1/regulars", regularRoutes)
+app.use("/api/v1/companies", companyRoutes)
+app.use("/api/v1/jobs", jobRoutes)
+app.use("/api/v1/applications", apllicationRoutes)
 createAdmin()
 
 export default app

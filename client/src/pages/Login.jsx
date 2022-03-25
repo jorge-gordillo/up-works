@@ -1,6 +1,9 @@
 import { useRef, useState, useEffect } from "react"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import { loginWhitEmail } from "../services/auth.service"
+import { CircularProgress } from "@mui/material"
+import { Card, Form, Button, Row, Col } from "react-bootstrap"
+import { Alert } from "../components/common"
 import useAuth from '../hooks/useAuth'
 
 const Login = () => {
@@ -16,6 +19,7 @@ const Login = () => {
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
    const [errMsg, setErrMsg] = useState('')
+	const [loading, setLoading] = useState(false)
 
    useEffect(() => {
       emailRef.current.focus()
@@ -27,55 +31,78 @@ const Login = () => {
    
    const handleSubmit = async (e) => {
       e.preventDefault()
-      loginWhitEmail(email, password)
-         .then((token) => {
-            login({...token})
-            setEmail('')
-            setPassword('')
-            navigate(from, { replace: true })
-         })
-         .catch((e) => {
-            setErrMsg(e.message)
-            errRef.current.focus()
-         })
+      try {
+         setLoading(true)
+         const token = await loginWhitEmail(email, password)
+         if (token.error) throw Error(token.error.msg)
+         login({ ...token.data })
+         console.log({...token.data});
+         setEmail('')
+         setPassword('')
+         navigate(from, { replace: true })
+      } catch (e) {
+         console.log(e);
+         setErrMsg(e.message)
+         setLoading(false)
+      }
    }
 
    return (
-      <section>
-         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-         <h1>Sign In</h1>
-         <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email:</label>
-            <input
-               type="text"
-               id="email"
-               ref={emailRef}
-               autoComplete="on"
-               onChange={({target}) => setEmail(target.value)}
-               value={email}
-               required
-            />
-
-            <label htmlFor="password">Password:</label>
-            <input
-               type="password"
-               id="password"
-               autoComplete='on'
-               onChange={({target}) => setPassword(target.value)}
-               value={password}
-               required
-            />
-
-            <button>Sign In</button>
-         </form>
-         <p>
-            Need an Account?<br />
-            <span className="line">
-               <Link to="/register">Sign Up</Link>
-            </span>
-         </p>
-      </section>
-
+      <>
+         <Row>
+			<Col md={6} className="mx-auto mt-5">
+				<Card>
+					<Card.Body>
+						<Form onSubmit={handleSubmit}>
+							<Form.Group className="mb-3">
+								<Form.Label>Correo</Form.Label>
+								<Form.Control
+                           id="email"
+									name="email"
+									type="email"
+                           value={email}
+                           ref={emailRef}
+									autoComplete="on"
+									placeholder="Correo electronico"
+									onChange={({ target }) => setEmail(target.value)}
+                           required
+								/>
+							</Form.Group>
+							<Form.Group className="mb-3">
+								<Form.Label>Contraseña</Form.Label>
+								<Form.Control
+                           id="password"
+									name="password"
+									type="password"
+									value={password}
+									autoComplete="on"
+									placeholder="Introduce tu contraseña"
+									onChange={({ target }) => setPassword(target.value)}
+                           required
+								/>
+							</Form.Group>
+							{loading ? (
+								<CircularProgress />
+							): (
+								<Button
+									variant="primary"
+									type="submit"
+									className="mx-auto"
+								>
+									Iniciar sesión
+								</Button>
+							)}
+						</Form>
+					</Card.Body>
+				</Card>
+				{errMsg && (
+					<Alert type="error" title="Error">
+						{errMsg}
+					</Alert>
+				)}
+			</Col>
+      </Row>
+      </>
    )
 }
 

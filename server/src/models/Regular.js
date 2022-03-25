@@ -1,59 +1,52 @@
 import { DataTypes } from "sequelize"
 import { sequelize } from '../database/database'
 import User from "./User"
-import Profile from './Profile'
-import Contact from './Contact'
-import Title from './Title'
-import Experience from './Experience'
-import Education from './Education'
-import Skill from './Skill'
-import Idiom from './Idiom'
-import Link from './Link'
-import Course from './Course'
-import Aplication from './Aplication'
 
-const Regular = sequelize.define(
-	"regulars",
+const Regular = sequelize.define("regulars",
 	{
+		id_regular: {
+			type: DataTypes.INTEGER,
+			primaryKey: true
+		},
 		uid: {
 			type: DataTypes.INTEGER,
-			primaryKey: true,
+			unique: true,
+			references: {
+				model: User,
+				key: 'uid'
+			}
 		},
 		matricula: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			unique: true,
-		}
+			unique: true
+		},
+		name: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		},
+		photo: DataTypes.TEXT,
+		personal_email: DataTypes.TEXT,
+		birthday: DataTypes.DATE,
+		phone: DataTypes.TEXT,
+		ocupation: DataTypes.TEXT,
+		abstract: DataTypes.TEXT,
+		relocate: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: false,
+		},
+		cv: DataTypes.TEXT,
+		createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE
 	},
 	{
-		timestamps: false,
+		timestamps: true,
 		underscored: true,
+		tableName: 'regulars',
 	}
 )
 
-User.hasOne(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade' })
-Regular.belongsTo(User, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade' })
-
-Regular.hasOne(Profile, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Regular.hasOne(Contact, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Regular.hasOne(Title, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Regular.hasMany(Experience, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Regular.hasMany(Education, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Regular.hasMany(Skill, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Regular.hasMany(Idiom, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Regular.hasMany(Link, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Regular.hasMany(Course, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Regular.hasMany(Aplication, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-
-Profile.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Contact.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Title.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Experience.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Education.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Skill.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Idiom.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Link.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Course.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
-Aplication.belongsTo(Regular, {foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade'})
+User.hasOne(Regular, { foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade' })
+Regular.belongsTo(User, { foreignKey:'uid', sourceKey:'uid', onDelete: 'cascade' })
 
 export default Regular

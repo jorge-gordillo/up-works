@@ -6,8 +6,9 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir build",
-    "start": "node build/index.js",
-    "dev": "nodemon src/index.js --exec babel-node"
+    "start": "nodemon node build/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
+    "babel-node": "npm i -g  @babel/node "
   },
   "keywords": [],
   "license": "ISC",

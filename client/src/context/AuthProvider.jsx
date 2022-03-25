@@ -18,9 +18,7 @@ const AuthProvider = ({ children }) => {
 	}
 
 	const isLogged = () => !!user
-	const hasRole = (role) => {
-		return user?.role === role
-	}
+	const hasRole = (role) => user?.role === role
 
 	const contextValue = {
 		user,

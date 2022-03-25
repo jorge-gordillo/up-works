@@ -1,66 +1,54 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database"
-import Aplication from "./Aplication"
-import Regular from "./Regular";
+import Company from "./Company"
 
-const Jobs = sequelize.define("jobs", {
-   id_job: {
-		type: DataTypes.INTEGER,
-		primaryKey: true
+const Jobs = sequelize.define("jobs",
+	{
+		id_job: {
+			type: DataTypes.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		id_company: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			references: {
+				model: Company,
+				key: 'id_company'
+			}
+		},
+		title: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		},
+		salary: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
+		ubication: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		},
+		type: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
+		description: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		},
+		state: {
+			type: DataTypes.INTEGER,
+			defaultValue: 0
+		},
+		createdAt: DataTypes.DATE,
+		updatedAt: DataTypes.DATE
 	},
-	uid: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-	},
-	active: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-	},
-	title: {
-		type: DataTypes.TEXT,
-		allowNull: false
-	},
-	description: {
-		type: DataTypes.TEXT,
-		allowNull: false
-	},
-	ubication: {
-		type: DataTypes.TEXT,
-		allowNull: false
-   },
-	vacancies: {
-		type: DataTypes.INTEGER,
-		allowNull: false
-   },
-	job_type: {
-		type: DataTypes.TEXT,
-		allowNull: false
-   },
-	start_salary: {
-		type: DataTypes.INTEGER,
-		allowNull: false
-   },
-	end_salary: {
-		type: DataTypes.INTEGER,
-		allowNull: true
-   },
-   salary_type: {
-		type: DataTypes.TEXT,
-		allowNull: false
-   },
-   company_logo: {
-		type: DataTypes.TEXT,
-		allowNull: false
-   },
-   company_name: {
-		type: DataTypes.TEXT,
-		allowNull: false
-   },
-
-},
-	{ timestamps: false }
+	{
+		timestamps: true,
+		underscored: true,
+		tableName: 'jobs'
+	}
 )
-
-
 
 export default Jobs

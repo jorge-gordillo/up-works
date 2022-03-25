@@ -1,27 +1,46 @@
-import jwt from 'jsonwebtoken'
-import config from '../config'
+import jwt, { TokenExpiredError } from 'jsonwebtoken'
+const JWT_SECRET = process.env.JWT_SECRET
 
 export const verifyToken = async (req, res, next) => {
-   const token = req.headers["x-access-token"]
-   
-   if (!token) return res.status(403).json({ error: { message: "Usuario no Autenticado" }})
+   const token = req.body.token || req.params.token || req.query.token || req.headers['x-access-token']
 
-   jwt.verify(token, config.SECRET, (err, decoded) => {
-      if (err) return catchError(err, res)
-      req.tokenId = decoded.id
-      req.role = decoded.role
-      next()
-   })
-}
+   try {
+      if (!token) return res.status(401).json({
+         error: {
+            status: 401,
+            msg: 'Usuario no autenticado'
+         }
+      })
 
-export const catchError = (err, res) => {
-   const { TokenExpiredError } = jwt
-   if (err instanceof TokenExpiredError) {
-      return res.status(401).send({
-         message: 'No autorizado! El token ha expirado'
+      jwt.verify(token, JWT_SECRET, (err, decoded) => {
+         if (err) {
+            if (err instanceof TokenExpiredError) {
+               return res.status(403).send({
+                  error: {
+                     status: 403,
+                     msg: 'No autorizado! El token ha expirado'
+                  }
+               })
+            } else {
+               return res.status(400).send({
+                  error: {
+                     status: 400,
+                     msg: 'Error! El token es invalido'
+                  }
+               })
+            }
+         }
+         req.tokenUid = decoded.id
+         req.tokenRole = decoded.role
+         next()
+      })
+   } catch (err) {
+      console.log({ status: 'Error', from: 'authorization/verifyToken', msg: e.message})
+      return res.status(500).send({
+         error: {
+            status: 500,
+			   msg: 'Error interno del servidor'
+         }
       })
    }
-   return res.status(401).send({
-      message: 'No autorizado'
-   })
 }

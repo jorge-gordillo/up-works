@@ -18,8 +18,8 @@ export const loginWhitEmail = async (email, password) => {
 
     const res = await fetch(api.singIn, requestOptions)
     const token = await res.json()
-    if (token.error) throw Error(token.error.message)
     return token
+
 }
 
 export const getData = async(role, token) => {

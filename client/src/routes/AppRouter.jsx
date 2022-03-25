@@ -42,7 +42,7 @@ const AppRouter = () => {
 
             {/* Rutas protegidas */}
             <Route element={<PrivateRoute/>}>
-               <Route path='dashboard' element={<Dashboard />} />
+               <Route path='inicio' element={<Dashboard />} />
                <Route path='vacante' element={<Job />} />
                <Route path='perfil' element={<Profile />} />
                <Route path='postulaciones' element={<Applications />} />
@@ -53,7 +53,7 @@ const AppRouter = () => {
             </Route>
 
             {/* Rutas protegidas usuario Company */}
-            <Route path='empresa/' element={<PrivateRoute hasRole='company' />}>
+            <Route path='/' element={<PrivateRoute hasRole='company' />}>
                <Route path='vacantes' element={<Jobs/>} />
                <Route path='vacante/:idJob' element={<JobInfo/>} />
                <Route path='vacante/:idJob/postulaciones' element={<Application/>} />
@@ -62,7 +62,7 @@ const AppRouter = () => {
             </Route>
 
             {/* Rutas protegidas usuario Admin */}
-            <Route path='/admin/' element={<PrivateRoute hasRole='admin' />} >
+            <Route path='admin/' element={<PrivateRoute hasRole='admin' />} >
                <Route path='usuarios' element={<Users/>} />
                <Route path='empresas' element={<Business/>} />
             </Route>

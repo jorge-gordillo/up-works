@@ -67,9 +67,6 @@
          "unauthorized": "/no-autorizado",
          "notFoundPage": "/*"
       },
-      "regular": {
-
-      },
       "company": {
          "jobs": "/empresa/jobs",
          "jobInfo": "/empesa/:idJob",

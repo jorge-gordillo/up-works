@@ -1,18 +1,10 @@
-import Sequelize from 'sequelize'
+import { Sequelize } from 'sequelize'
+require('dotenv').config()
 
-const database = "upworks"
-const user = "postgres"
-const password = "jorge503" //Introduce la contraseña de la base de datos
-const host = "localhost"
-const port = "5432"
+const DB_URI = process.env.DB_URI
 
-export const sequelize = new Sequelize(
-	database,
-	user,
-	password, 
+export const sequelize = new Sequelize(DB_URI,
 	{
-      host,
-      port,
 		dialect: "postgres",
       logging: false,
 		pool: {

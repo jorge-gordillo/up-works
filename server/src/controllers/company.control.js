@@ -1,70 +1,85 @@
 import Company from "../models/Company"
-import Jobs from "../models/Jobs"
 
 export const getData = async (req, res) => {
-   const uid = req.tokenId
+   const uid = req.tokenUid
 	try {
-      const userFoud = await Company.findByPk(uid,
-         { incluide: [{ model: Jobs }]}
-      )
+		const userFound = await Company.findOne(
+			{ where: { uid }}
+		)
+		if (!userFound) return res.status(400).json({
+			error: {
+				status: 404,
+				msg: 'Recurso no encontrado'
+			}
+		})
 		res.status(200).json({
-         ...userFoud.dataValues,
-      })
+			data: {
+				...userFound.dataValues
+			}
+		})
 	} catch (e) {
-		return res.status(400).json({ ok: false, error: { message: e.message }})
+		console.log({ status: 'Error', from: 'company.contoll/getData', msg: e.message })
+		res.status(500).json({
+			error: {
+				status: 500,
+				msg: 'Error interno del servidor'
+			}
+		})
 	}
 }
 
-export const getAplications = (req, res) => {
-   const {  } = req.body
+export const putProfile = async (req, res) => {
+   const { name, birthday, country, address } = req.body
+   const uid = req.tokenUid
    try {
-      
+      const count = await Company.update(
+         { name, birthday, country, address },
+         { where: { uid } }
+      )
+      if (count === 0) return res.status(400).json({
+			error: {
+				status: 400,
+				msg: 'Error al actualizar los datos'
+			}
+      })
+      res.status(200).json({
+			data: 'Datos actualizados correctamente'
+		})
    } catch (e) {
-      return res.status(400).json({ ok: false, error: { message: e.message }})
+      console.log({ status: 'Error', from: 'company.contoll/putProfile', msg: e.message })
+		res.status(500).json({
+			error: {
+				status: 500,
+				msg: 'Error interno del servidor'
+			}
+		})
    }
 }
 
-export const getJobs = (req, res) => {
-	const {  } = req.body
+export const putPhoto = async (req, res) => {
+   const { photo } = req.body
    try {
-      
+      throw Error('Accion no soportada por el servidor')
+      const count = await Regular.update(
+         { photo },
+         {where: { uid } }
+      )
+      if (count === 0) return res.status(400).json({
+			error: {
+				status: 400,
+				msg: 'Error al actualizar la foto'
+			}
+      })
+      return res.status(200).json({
+			data: 'Foto actualizada correctamente'
+		})
    } catch (e) {
-      return res.status(400).json({ ok: false, error: { message: e.message }})
-   }
-}
-
-export const getJobById = (req, res) => {
-	const {  } = req.body
-   try {
-      
-   } catch (e) {
-      return res.status(400).json({ ok: false, error: { message: e.message }})
-   }
-}
-
-export const postJob = (req, res) => {
-   const {  } = req.body
-   try {
-      
-   } catch (e) {
-      return res.status(400).json({ ok: false, error: { message: e.message }})
-   }
-}
-
-export const uptadeJob = (req, res) => {
-   const {  } = req.body
-   try {
-      
-   } catch (e) {
-      return res.status(400).json({ ok: false, error: { message: e.message }})
-   }
-}
-
-export const deleteJob = (req, res) => {
-   const {  } = req.body
-   try {
-      
-   } catch (e) {
-      return res.status(400).json({ ok: false, error: { message: e.message }})
+      console.log({ status: 'Error', from: 'company.contoll/putPhoto', msg: e.message })
+		return res.status(500).json({
+			error: {
+				status: 500,
+				msg: 'Error interno del servidor'
+			}
+		})
    }
 }

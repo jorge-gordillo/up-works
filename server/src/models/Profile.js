@@ -16,29 +16,28 @@ const Profile = sequelize.define(
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-		gender: {
+		personal_email: {
 			type: DataTypes.TEXT,
-			allowNull: false,
 		},
 		birthday: {
 			type: DataTypes.DATE,
 		},
-		country: {
+		phone: {
 			type: DataTypes.TEXT,
 		},
-		state: {
+		ocupation: {
 			type: DataTypes.TEXT,
 		},
-		city: {
-			type: DataTypes.TEXT,
-		},
-		cp: {
-			type: DataTypes.TEXT,
+		abstract: {
+			type: DataTypes.TEXT
 		},
 		relocate: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false,
-		}
+		},
+		cv: {
+			type: DataTypes.TEXT,
+		},
 	},
 	{
 		timestamps: false,

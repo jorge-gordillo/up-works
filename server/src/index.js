@@ -1,11 +1,12 @@
 import '@babel/polyfill'
 import app from "./app"
+require('dotenv').config()
 
-const port = 4000
+const PORT = process.env.PORT || 4000
 
 async function main() {
-   await app.listen(port)
-   console.log(`Server listen on port http://localhost:${port}/`)
+   await app.listen(PORT)
+   console.log(`Server listen on port http://localhost:${PORT}/`)
 }
 
 main()

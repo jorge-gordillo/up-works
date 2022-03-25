@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom"
+import {Input} from '@mui/material'
+import { useState } from "react"
 
 const Home = () => {
+   const [date, setDate] = useState('2022-02-15')
+   const [time, setTime] = useState('11:45')
    return (
+      <>
       <section>
          <h1>Home</h1>
          <br />
@@ -28,7 +33,15 @@ const Home = () => {
          <h2>Admin</h2>
          <Link to='/admin/usuarios'>User List</Link>
          <Link to='/admin/empresas'>Busines List</Link>
+         <br />
       </section>
+         <Input sx={{ color: "#fff"}} value={date} type='date' onChange={({ target }) => {
+            setDate(target.value)
+         }} />
+         <Input sx={{ color: "#fff"}} value={time} type='time' onChange={({ target }) => {
+            setTime(target.value)
+         }} />
+      </>
    )
 }
 
