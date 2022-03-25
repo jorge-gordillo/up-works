@@ -24,7 +24,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Home() {
   return (
     <Container>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }} style={{paddingTop:'3rem'}}>
         <Grid container spacing={1.5}>
           <Grid item xs={12} md={7}>
             <Item>
@@ -78,7 +78,7 @@ export default function Home() {
           </Grid>
           <Grid item xs={12} md={5}>
             <Item>
-              <img src="/dist/assets/logoUpwork.png" alt="logo" />
+              <img src="/src/logoUpwork.png" alt="logoUp" />
             </Item>
           </Grid>
         </Grid>
