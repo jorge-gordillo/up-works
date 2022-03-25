@@ -3,20 +3,16 @@ import useAuth from "../../hooks/useAuth";
 import { roles, routes } from "../../helpers";
 import { DashboardRounded, DashboardOutlined, SearchRounded, PersonRounded, PersonOutlineRounded, CheckRounded, CheckCircleRounded, LoginRounded, HomeRounded, WorkRounded, WorkOutlineRounded, AdminPanelSettings, AccountCircleOutlined, AssignmentIndOutlined, AssignmentIndRounded, InfoTwoTone } from "@mui/icons-material";
 import { Navbar, Nav, Container } from "react-bootstrap";
-// import "./Navbar.css";
+
+import "./NavbarApp.css";
+
 
 const NavbarApp = () => {
 	const { isLogged, hasRole, logout } = useAuth();
 	const { pathname } = useLocation();
 
 	return (
-		<Navbar
-			expand="lg"
-			variant="dark"
-			bg="dark"
-			sticky="top"
-			className="nav-bg"
-		>
+		<Navbar expand="lg" className="nav-bg" variant="dark">
 			<Container fluid>
 				<Navbar.Brand as={NavLink} to={routes.home}>
 					UpWorks
@@ -26,11 +22,17 @@ const NavbarApp = () => {
 					<Nav className="mx-auto">
 						{isLogged() && (
 							<>
-								<Nav.Link as={NavLink} to={routes.home}>
-									Inicio
-								</Nav.Link>
-								
-
+								<Nav.Link as={NavLink} to={routes.Dashboard}>
+                    {pathname === routes.Dashboard ? (
+                      <DashboardRounded />
+                    ) : (
+                      <DashboardOutlined />
+                    )}
+                    Inicio
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to={routes.Search}>
+                    <SearchRounded /> Buscar
+                  </Nav.Link>
 								{hasRole(roles.regular) && (
 									<>
                            <Nav.Link as={NavLink} to={routes.applications}>
@@ -41,20 +43,56 @@ const NavbarApp = () => {
                         
 								{hasRole(roles.admin) && (
 									<>
-										<Nav.Link as={NavLink} to={routes.admin.users}>
-											Usuarios
-										</Nav.Link>
-										<Nav.Link as={NavLink} to={routes.admin.business}>
-											Empresas
-										</Nav.Link>
-									</>
+									<NavDropdown
+									  title={
+										<>
+										  <AdminPanelSettingsIcon />
+										  Admin
+										</>
+									  }
+									>
+									  <NavDropdown.Item
+										as={NavLink}
+										to={routes.admin.Users}
+									  >
+										Registro Alumnos
+									  </NavDropdown.Item>
+									  <NavDropdown.Item
+										as={NavLink}
+										to={routes.admin.Business}
+									  >
+										Registro Empresa
+									  </NavDropdown.Item>
+									</NavDropdown>
+								  </>
 								)}
 								{hasRole(roles.company) && (
 									<>
-										<Nav.Link as={NavLink} to={routes.company.vacancies}>
-											Vacantes
-										</Nav.Link>
-									</>
+									<Nav.Link as={NavLink} to={routes.company.Jobs}>
+									  {pathname === routes.company.Jobs ? (
+										<WorkRounded />
+									  ) : (
+										<WorkOutlineRounded />
+									  )}
+									  Empleos
+									</Nav.Link>
+									<Nav.Link as={NavLink} to={routes.company.Application}>
+									  {pathname === routes.company.Application ? (
+										<ContactMailIcon />
+									  ) : (
+										<ContactMailRoundedIcon />
+									  )}
+									  Aplicados
+									  </Nav.Link>
+									<Nav.Link as={NavLink} to={routes.company.JobInfo}>
+									  {pathname === routes.company.JobInfo ? (
+										<PersonRounded />
+									  ) : (
+										<PersonOutlineRounded />
+									  )}
+									  Perfil
+									</Nav.Link>
+								  </>
                         )}
                         
                         <Nav.Link as={NavLink} to={routes.profile}>
@@ -67,13 +105,13 @@ const NavbarApp = () => {
 						{!isLogged() ? (
 							<>
 								<Nav.Link as={NavLink} to={routes.home}>
-									Inicio
+								<HomeRounded />Inicio
 								</Nav.Link>
 								<Nav.Link as={NavLink} to={routes.login}>
-									Login
+							    <LoginRounded />Login
 								</Nav.Link>
 								<Nav.Link as={NavLink} to={routes.about}>
-									About
+									<InfoTwoTone /> About
 								</Nav.Link>
 							</>
 						) : (

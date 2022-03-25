@@ -1,0 +1,39 @@
+.tit {
+    color: #54436b !important;
+    text-align: left;
+  }
+  span {
+    color: #50cb93;
+  }
+  .span2 {
+    color: #71efa3;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+  }
+  @media only screen and (min-width: 1000px) {
+    img {
+      width: 366px;
+      height: 392px;
+    }
+  
+    .tit {
+      font-size: 65px;
+      color: #54436b !important;
+      text-align: left;
+    }
+    span {
+      color: #50cb93;
+    }
+  
+    .p-size {
+      font-size: 26px;
+      text-align: justify;
+      margin: 22px;
+    }
+  
+    .wel {
+      padding: 10px;
+    }
+  }

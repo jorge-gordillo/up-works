@@ -41,7 +41,7 @@ export default function About() {
             <br></br>
             <br></br>
             <br></br>
-            <img src="/assets/img/logoUpwork.png" alt="logo" />
+            <img src="/dist/assets/logoUpwork.png" alt="logo" />
           </Grid>
         </Grid>
       </Box>
