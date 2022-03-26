@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import { padding } from "@mui/system";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -14,13 +15,13 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function About() {
   return (
     <div>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }} style={{padding:'3rem'}}>
+      <Item>
         <Grid container spacing={5}>
           <Grid item xs={7}>
-            <Item>
+         
               <h1 className="tit">
-                Acerca de <br />
-                <span>UPWORKS</span>
+                Acerca de<span> UPWORKS</span>
               </h1>
               <div className="p-size">
                 <p>
@@ -34,16 +35,14 @@ export default function About() {
                   UPTAP.
                 </p>
               </div>
-            </Item>
+            
           </Grid>
           <Grid item xs={5}>
             <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <img src="/dist/assets/logoUpwork.png" alt="logo" />
+            <img src="/src/logoUpwork.png" alt="logo" />
           </Grid>
         </Grid>
+        </Item>
       </Box>
     </div>
   );

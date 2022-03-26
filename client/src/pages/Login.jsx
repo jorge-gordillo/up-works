@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import { loginWhitEmail } from "../services/auth.service"
-import { CircularProgress } from "@mui/material"
+import { CircularProgress,Typography } from "@mui/material"
 import { Card, Form, Button, Row, Col } from "react-bootstrap"
 import { Alert } from "../components/common"
 import useAuth from '../hooks/useAuth'
@@ -52,12 +52,12 @@ const Login = () => {
       <>
          <Row>
 			<Col md={6} className="mx-auto mt-5">
-				<Card border="success" className="text-center" style={{paddingBottom: '2.6rem'}} >
-				<Card.Title>Iniciar Sesión</Card.Title>
+				<Card border="success" className="text-center">
+				<Card.Title><Typography variant="h4">Iniciar Sesión</Typography></Card.Title>
 					<Card.Body >
 						<Form onSubmit={handleSubmit}>
 							<Form.Group className="mb-3">
-								<Form.Label>Correo</Form.Label>
+								<Form.Label><Typography variant="h5">Correo</Typography></Form.Label>
 								<Form.Control
                            id="email"
 									name="email"
@@ -71,7 +71,7 @@ const Login = () => {
 								/>
 							</Form.Group>
 							<Form.Group className="mb-3">
-								<Form.Label>Contraseña</Form.Label>
+								<Form.Label><Typography variant="h5">Contraseña</Typography></Form.Label>
 								<Form.Control
                            id="password"
 									name="password"
@@ -87,7 +87,7 @@ const Login = () => {
 								<CircularProgress />
 							): (
 								<Button
-									variant="primary"
+								    variant="outline-success"
 									type="submit"
 									className="mx-auto"
 								>
@@ -95,13 +95,13 @@ const Login = () => {
 								</Button>
 							)}
 						</Form>
-					</Card.Body>
-				</Card>
-				{errMsg && (
+						{errMsg && (
 					<Alert type="error" title="Error">
 						{errMsg}
 					</Alert>
 				)}
+					</Card.Body>
+				</Card>
 			</Col>
       </Row>
 	  

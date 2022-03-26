@@ -302,7 +302,7 @@ function Business() {
       </Button>
       <br />
       <br />
-      <Paper sx={{ width: "100%", mb: 2 }}>
+      <Paper sx={{ width: "90%", mb: 2 }} style={{ margin:'auto'}}>
         <TableContainer sx={{ maxHeight: 600 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
