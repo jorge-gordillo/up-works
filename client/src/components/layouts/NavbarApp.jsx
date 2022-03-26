@@ -17,7 +17,10 @@ import {
 	AccountCircleOutlined,
 	AssignmentIndOutlined,
 	AssignmentIndRounded,
+	LogoutIcon,
 	InfoTwoTone,
+	PersonIcon,
+	ApartmentIcon
 } from "@mui/icons-material";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./NavbarApp.css";
@@ -55,10 +58,10 @@ const NavbarApp = () => {
 								{hasRole(roles.admin) && (
 									<>
 										<Nav.Link as={NavLink} to={routes.admin.users}>
-											Usuarios
+											<PersonIcon/>Usuarios
 										</Nav.Link>
 										<Nav.Link as={NavLink} to={routes.admin.business}>
-											Empresas
+											<ApartmentIcon/>Empresas
 										</Nav.Link>
 									</>
 								)}
@@ -79,18 +82,21 @@ const NavbarApp = () => {
 					<Nav>
 						{!isLogged() ? (
 							<>
+
 								<Nav.Link as={NavLink} to={routes.site}>
-									Inicio
+									Iniciar
 								</Nav.Link>
 								<Nav.Link as={NavLink} to={routes.login}>
-									Login
+								<LoginRounded/>Iniciar Sesion
 								</Nav.Link>
 								<Nav.Link as={NavLink} to={routes.about}>
-									About
+								<InfoTwoTone/>About
 								</Nav.Link>
 							</>
 						) : (
-							<Nav.Link onClick={() => logout()}>Cerrar sesion</Nav.Link>
+							<Nav.Link onClick={() => logout()}>
+								<LogoutIcon /> Cerrar sesion
+								</Nav.Link>
 						)}
 					</Nav>
 				</Navbar.Collapse>
