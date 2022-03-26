@@ -20,6 +20,7 @@ import {
 	InfoTwoTone,
 } from "@mui/icons-material";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import "./NavbarApp.css";
 
 const NavbarApp = () => {
 	const { isLogged, hasRole, logout } = useAuth();
@@ -28,7 +29,6 @@ const NavbarApp = () => {
 		<Navbar
 			expand="lg"
 			variant="dark"
-			bg="dark"
 			sticky="top"
 			className="nav-bg"
 		>
