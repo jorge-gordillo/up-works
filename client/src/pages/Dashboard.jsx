@@ -1,10 +1,12 @@
 import { useNavigate, Link } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
-
+import { Typography, Alert, AlertTitle, Container, Paper, Box, Grid, Button } from "@mui/material";
+import HomeIcon from '@mui/icons-material/Home';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 const Dashboard = () => {
    const navigate = useNavigate()
    const { logout } = useAuth()
-   
+
    const singOut = () => {
       logout()
       navigate('/')
@@ -12,21 +14,47 @@ const Dashboard = () => {
 
    return (
       <section>
-         <h1>Dashboard</h1>
+         <Typography variant="h3" align="center" component="div" gutterBottom >Dashboard</Typography>
          <br />
-         <p>You are logged in!</p>
-         <br />
-         <Link to="/editor">Go to the Editor page</Link>
-         <br />
-         <Link to="/admin">Go to the Admin page</Link>
-         <br />
-         <Link to="/lounge">Go to the Lounge</Link>
-         <br />
-         <Link to="/">Go to Home</Link>
-         <div className="flexGrow">
-            <button onClick={singOut}>Sign Out</button>
-         </div>
+         <Container fixed>
+            <Paper elevation={0}>
+               <Alert severity="success">
+                  <AlertTitle>BIENVENIDO</AlertTitle>
+                  <strong>Inicio correcto!</strong>
+               </Alert>
+            </Paper>
+            <br></br>
+            <Box sx={{ width: '80%' }} style={{ margin: 'auto' }}>
+               <Grid container spacing={3} >
+                  <br></br>
+                  <Grid Paper xs style={{padding:'1%'}}>
+                     <Link to="/admin/usuarios"> <Paper>
+                        <Typography  variant="h6" align="center" component="div" gutterBottom color="primary" ><br></br>Administrar Usuarios<AdminPanelSettingsIcon color="primary"/></Typography><br></br></Paper>
+                      </Link>
+                  </Grid>
+                  <br></br>
+                  <Grid Paper xs style={{padding:'1%'}}>
+                     <Link to="/"><Paper>
+                        <Typography variant="h6" align="center" component="div" gutterBottom color="primary" ><br></br>INICIO<HomeIcon color="primary" ></HomeIcon></Typography><br></br></Paper>
+                     </Link>
+      
+                  </Grid>
+                  <br></br>
+                  <Grid Paper xs style={{padding:'1%'}}>
+                     <Link to="/admin/empresas" ><Paper>
+                        <Typography variant="h6" align="center" component="div" gutterBottom color="primary" ><br></br>Administrar Empresas<AdminPanelSettingsIcon color="primary"/></Typography><br></br></Paper>
+                     </Link>
+                  </Grid>
+                  <br></br>
+               </Grid>
+            </Box>
+            <br></br>
+            <Button variant="outlined" color="error" onClick={singOut} style={{width:'300px',margin:'auto'}} >
+               Cerrar sesion
+            </Button>
+         </Container>
       </section>
+
    )
 }
 
