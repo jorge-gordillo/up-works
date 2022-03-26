@@ -42,7 +42,7 @@ export default function Home() {
                 <p>
                   Encuentra el lugar perfecto para trabajar, o consigue
                   proyectos para aumentar tu portafolio. Si eres una empresa
-                  contrata gente para que te ayude.
+                  contrata gente para que te ayude..
                 </p>
               </div>
               <br />

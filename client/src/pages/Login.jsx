@@ -40,10 +40,6 @@ const Login = () => {
          setEmail('')
          setPassword('')
 		 setLoading(false)
-         setEmail('')
-         setPassword('')
-         setLoading(false)
-         navigate(from, { replace: true })
          navigate(from, { replace: true })
       } catch (e) {
          console.log(e);
