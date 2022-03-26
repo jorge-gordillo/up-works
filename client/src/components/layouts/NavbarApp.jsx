@@ -79,7 +79,7 @@ const NavbarApp = () => {
 					<Nav>
 						{!isLogged() ? (
 							<>
-								<Nav.Link as={NavLink} to={routes.home}>
+								<Nav.Link as={NavLink} to={routes.site}>
 									Inicio
 								</Nav.Link>
 								<Nav.Link as={NavLink} to={routes.login}>
