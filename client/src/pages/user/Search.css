@@ -1,0 +1,28 @@
+@media only screen and (min-width: 1000px) {
+ 
+    .Principal {
+        padding: 10px;    
+      }
+    
+    .Boton {
+        padding: 10px;  
+        margin: auto;
+        position: absolute;
+        top: 10%;
+        left: 90%;    
+      }
+      .cardEmpleo {
+        padding: 10px;
+        margin-top: 2% !important; 
+        margin: auto;
+        border: 2px solid #54436B;
+        transition: .3s;
+      }
+    
+      .cardEmpleo:hover{
+        box-shadow: 0px 2px 2px #71EFA3;
+        border-left: 6px solid #54436B;
+      }
+    
+    
+    }
