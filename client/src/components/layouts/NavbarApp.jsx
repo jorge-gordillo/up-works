@@ -65,7 +65,7 @@ const NavbarApp = () => {
 								{hasRole(roles.company) && (
 									<>
 										<Nav.Link as={NavLink} to={routes.company.vacancies}>
-											Vacantes
+											Vacanates de empleos
 										</Nav.Link>
 									</>
 								)}
