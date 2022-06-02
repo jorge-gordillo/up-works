@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import RoomIcon from "@mui/icons-material/Room";
 
-export default function JobInfo() {
+export default function Profilecompany() {
   return (
     <>
       <Grid container spacing={3} sx={{ pt: 3 }}>
