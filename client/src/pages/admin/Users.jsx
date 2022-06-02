@@ -300,7 +300,7 @@ function Users() {
       </Button>
       <br />
       <br />
-      <Paper  sx={{ width: "90%", mb: 2 }} style={{ margin:'auto'}}>
+      <Paper sx={{ width: "90%", mb: 2 }} style={{ margin: 'auto' }}>
         <TableContainer sx={{ maxHeight: 600 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
