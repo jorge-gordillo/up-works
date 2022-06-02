@@ -51,7 +51,7 @@ const Alert = Swal.mixin({
     p: 4,
   };
 
-function Application() {
+function Applicant() {
 
     
     const [data, setData]=useState([]);
@@ -270,4 +270,4 @@ function Application() {
 );
     }
 
-export default Application;
+export default Applicant;
