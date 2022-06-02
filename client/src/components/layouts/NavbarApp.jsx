@@ -39,7 +39,11 @@ const NavbarApp = () => {
 										<Nav.Link as={NavLink} to={routes.applications}>
 											Postulaciones
 										</Nav.Link>
+										<Nav.Link as={NavLink} to={routes.profile}>
+											Perfil
+										</Nav.Link>
 									</>
+
 								)}
 								{hasRole(roles.admin) && (
 									<>
@@ -53,23 +57,21 @@ const NavbarApp = () => {
 								)}
 								{hasRole(roles.company) && (
 									<>
-										<Nav.Link as={NavLink} to={routes.company.vacancies}>
-											<MarkunreadMailboxIcon />	Vacanates de empleos
+										<Nav.Link as={NavLink} to={routes.company.trabajos}>
+											Crear Empleos
 										</Nav.Link>
 
-										<NavLink as={NavLink} to={routes.company.aplications}>
-											Aplicaciones
+										<NavLink as={NavLink} to={routes.company.applicant}>
+											<MarkunreadMailboxIcon />	Postulantes
 										</NavLink>
-
-										<Nav.Link as={NavLink} to={routes.company.job}>
+										 
+										<Nav.Link as={NavLink} to={routes.company.profilecompany}>
 											Perfil Empresas
 										</Nav.Link>
 									</>
 								)}
 
-								<Nav.Link as={NavLink} to={routes.profile}>
-									Perfil
-								</Nav.Link>
+
 							</>
 						)}
 					</Nav>

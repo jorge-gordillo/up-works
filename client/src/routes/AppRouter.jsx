@@ -18,10 +18,10 @@ import Profile from "../pages/Profile"
 import Applications from "../pages/Applications"
 
 import Jobs from "../pages/company/Jobs"
-import JobInfo from '../pages/company/JobInfo'
-import Application from "../pages/company/Application"
+import Profilecompany from '../pages/company/Profilecompany'
+/* import Application from "../pages/company/Application" */
 import Applicant from "../pages/company/Applicant"
-import NewJob from '../pages/company/NewJob'
+
 
 import Users from "../pages/admin/Users"
 import Business from '../pages/admin/Business'
@@ -30,18 +30,18 @@ const AppRouter = () => {
 
    return (
       <Routes>
-         <Route path='/' element={<AppLayout/>}>
+         <Route path='/' element={<AppLayout />}>
             {/* Rutas publicas */}
             <Route path='/' element={<Home />} />
             <Route path='acerca-de' element={<About />} />
             <Route path='aviso-privacidad' element={<NoticePrivacy />} />
             <Route path='terminos-condiciones' element={<TermsConditions />} />
             <Route path='FAQ' element={<Faq />} />
-            <Route path='login' element={<Login/>} />
+            <Route path='login' element={<Login />} />
             <Route path='unauthorized' element={<Unauthorized />} />
 
             {/* Rutas protegidas */}
-            <Route element={<PrivateRoute/>}>
+            <Route element={<PrivateRoute />}>
                <Route path='inicio' element={<Dashboard />} />
                <Route path='vacante' element={<Job />} />
                <Route path='perfil' element={<Profile />} />
@@ -54,21 +54,22 @@ const AppRouter = () => {
 
             {/* Rutas protegidas usuario Company */}
             <Route path='/' element={<PrivateRoute hasRole='company' />}>
-               <Route path='vacantes' element={<Jobs/>} />
-               <Route path='vacante/:idJob' element={<JobInfo/>} />
-               <Route path='vacante/:idJob/postulaciones' element={<Application/>} />
-               <Route path='postulante/:idApplicant' element={<Applicant/>} />
-               <Route path='nueva-vacante' element={<NewJob/>} />
+               <Route path='trabajos' element={<Jobs />} />
+               <Route path='perfil/company' element={<Profilecompany />} />
+               <Route path='trabajos/postulaciones' element={<Applicant />} />
+
+               {/* <Route path='vacante/:idJob/postulaciones' element={<Application />} /> */}
+               {/*  <Route path='nueva-vacante' element={<NewJob />} /> */}
             </Route>
 
             {/* Rutas protegidas usuario Admin */}
             <Route path='admin/' element={<PrivateRoute hasRole='admin' />} >
-               <Route path='usuarios' element={<Users/>} />
-               <Route path='empresas' element={<Business/>} />
+               <Route path='usuarios' element={<Users />} />
+               <Route path='empresas' element={<Business />} />
             </Route>
 
             {/* Catch all */}
-            <Route path='*' element={<NotFoundPage/>} />
+            <Route path='*' element={<NotFoundPage />} />
          </Route>
       </Routes>
    )
