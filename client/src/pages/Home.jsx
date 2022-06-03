@@ -128,8 +128,8 @@ export default function Home() {
                     UNETE
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                  Si eres un <span>alumno/egresado</span> no pierdas la oportunidad de trabajar en lo que te has especializado, donde tu ves una vacante, nosotros vemos oportunidades de potencializar tus conocimientos.
+Si eres una empresa forma un equipo de trabajo que te ayude a alcanzar tus metas, encuentra al candidato que mejor se adapta al perfil buscado.
                   </Typography>
                 </CardContent>
               </Card>
@@ -148,8 +148,7 @@ export default function Home() {
                     APRENDIZAJE
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                  En <span>UPWORKS</span> Nuestra misión es ayudar a los estudiantes de la universidad politecnica de tapachula a conseguir empleo para fomentar un lugar de trabajo colaborativo con el objetivo de crear la mejor experiencia para los estudiantes.
                   </Typography>
                 </CardContent>
               </Card>
