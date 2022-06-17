@@ -16,7 +16,7 @@ import Dashboard from "../pages/Dashboard"
 import Job from "../pages/Job"
 import Profile from "../pages/user/Profile"
 import Search from "../pages/user/Search"
-import Applications from "../pages/Applications"
+import Applications from "../pages/user/Applications"
 
 import Jobs from "../pages/company/Jobs"
 import Profilecompany from '../pages/company/Profilecompany'
