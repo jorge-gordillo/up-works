@@ -14,7 +14,7 @@ import Unauthorized from "../pages/Unauthorized"
 
 import Dashboard from "../pages/Dashboard"
 import Job from "../pages/Job"
-import Profile from "../pages/Profile"
+import Profile from "../pages/user/Profile"
 import Applications from "../pages/Applications"
 
 import Jobs from "../pages/company/Jobs"
