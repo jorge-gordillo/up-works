@@ -15,6 +15,7 @@ import Unauthorized from "../pages/Unauthorized"
 import Dashboard from "../pages/Dashboard"
 import Job from "../pages/Job"
 import Profile from "../pages/user/Profile"
+import Search from "../pages/user/Search"
 import Applications from "../pages/Applications"
 
 import Jobs from "../pages/company/Jobs"
@@ -45,6 +46,7 @@ const AppRouter = () => {
                <Route path='inicio' element={<Dashboard />} />
                <Route path='vacante' element={<Job />} />
                <Route path='perfil' element={<Profile />} />
+               <Route path='search' element={<Search />} />
                <Route path='postulaciones' element={<Applications />} />
             </Route>
 

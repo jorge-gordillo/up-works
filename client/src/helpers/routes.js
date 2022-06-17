@@ -9,6 +9,7 @@ export const routes = {
   home: "/inicio",
   job: "/empleo/:workId",
   profile: "/perfil",
+  search: "/search",
   applications: "/postulaciones",
   unauthorized: "/no-autorizado",
   notFoundPage: "/*",

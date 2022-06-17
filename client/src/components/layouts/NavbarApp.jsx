@@ -10,6 +10,7 @@ import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import BusinessIcon from '@mui/icons-material/Business';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
+import SearchIcon from '@mui/icons-material/Search';
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./NavbarApp.css";
 
@@ -38,6 +39,10 @@ const NavbarApp = () => {
 
 								{hasRole(roles.regular) && (
 									<>
+										<Nav.Link as={NavLink} to={routes.search}>
+										<SearchIcon/ >	Buscar
+										</Nav.Link>
+
 										<Nav.Link as={NavLink} to={routes.applications}>
 										<MarkunreadMailboxIcon/ >	Postulaciones
 										</Nav.Link>

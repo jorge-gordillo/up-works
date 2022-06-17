@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Container, TextField, Fab, Grid, FormControl, Item, Card, Alert, CardContent, Typography, Chip } from '@mui/material';
+import {Container, TextField, Fab, Grid, FormControl,  Card, Alert, CardContent, Typography, Chip } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import RoomIcon from '@mui/icons-material/Room';
 import "./Search.css";
@@ -31,7 +31,7 @@ export default function Search() {
         <>
             <div>
                 <Container maxWidth="sm">
-                 <h1 >Ubica tu empresa</h1>
+                 <h1 >Ubica un trabajo</h1>
                  <Grid container spacing={1}>
                  <Grid item>
                  <FormControl sx={{ m: 1, minWidth: 80 }}>
