@@ -31,7 +31,7 @@ export default function About() {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }} style={{padding:'1rem'}}>
-      <Item>
+      
         <Grid container spacing={3}>
           <Grid item xs={3}>
           <Item>
@@ -215,7 +215,7 @@ export default function About() {
           
            
         </Grid>
-        </Item>
+        
       </Box>
 
       
