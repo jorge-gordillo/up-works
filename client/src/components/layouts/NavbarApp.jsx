@@ -6,8 +6,10 @@ import LoginIcon from '@mui/icons-material/Login';
 import InfoIcon from '@mui/icons-material/Info';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import MarkunreadMailboxIcon from '@mui/icons-material/MarkunreadMailbox';
+import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import BusinessIcon from '@mui/icons-material/Business';
 import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./NavbarApp.css";
 
@@ -31,16 +33,17 @@ const NavbarApp = () => {
 						{isLogged() && (
 							<>
 								<Nav.Link as={NavLink} to={routes.site}>
-									<HomeIcon />	Inicio
+									<HomeIcon/ >	Inicio
 								</Nav.Link>
 
 								{hasRole(roles.regular) && (
 									<>
 										<Nav.Link as={NavLink} to={routes.applications}>
-											Postulaciones
+										<MarkunreadMailboxIcon/ >	Postulaciones
 										</Nav.Link>
+
 										<Nav.Link as={NavLink} to={routes.profile}>
-											Perfil
+										<PersonIcon/ > 	Perfil
 										</Nav.Link>
 									</>
 
@@ -48,25 +51,25 @@ const NavbarApp = () => {
 								{hasRole(roles.admin) && (
 									<>
 										<Nav.Link as={NavLink} to={routes.admin.users}>
-											<AdminPanelSettingsIcon />	Usuarios
+											<AdminPanelSettingsIcon/ >	Usuarios
 										</Nav.Link>
 										<Nav.Link as={NavLink} to={routes.admin.business}>
-											<BusinessIcon />	Empresas
+											<BusinessIcon/ >	Empresas
 										</Nav.Link>
 									</>
 								)}
 								{hasRole(roles.company) && (
 									<>
 										<Nav.Link as={NavLink} to={routes.company.trabajos}>
-											Crear Empleos
+										<CreateNewFolderIcon/ > Crear Empleos
 										</Nav.Link>
 
-										<NavLink as={NavLink} to={routes.company.applicant}>
-											<MarkunreadMailboxIcon />	Postulantes
-										</NavLink>
+										<Nav.Link as={NavLink} to={routes.company.applicant}>
+										<MarkunreadMailboxIcon/ > Postulantes
+										</Nav.Link>
 										 
 										<Nav.Link as={NavLink} to={routes.company.profilecompany}>
-											Perfil Empresas
+										<PersonIcon/ > Perfil Empresas
 										</Nav.Link>
 									</>
 								)}
@@ -78,20 +81,20 @@ const NavbarApp = () => {
 					<Nav>
 						{!isLogged() ? (
 							<>
-
+ 
 								<Nav.Link as={NavLink} to={routes.site}>
-									<HomeIcon />	Iniciar
+									<HomeIcon/ >	Iniciar
 								</Nav.Link>
 								<Nav.Link as={NavLink} to={routes.login}>
-									<LoginIcon />Iniciar Sesion
+									<LoginIcon/ > Iniciar Sesion
 								</Nav.Link>
 								<Nav.Link as={NavLink} to={routes.about}>
-									<InfoIcon />About
+									<InfoIcon/ >About
 								</Nav.Link>
 							</>
 						) : (
 							<Nav.Link onClick={() => logout()}>
-								<LogoutIcon /> Cerrar sesion
+								<LogoutIcon/ > Cerrar sesion
 							</Nav.Link>
 						)}
 					</Nav>

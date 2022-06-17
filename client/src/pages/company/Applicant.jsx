@@ -199,7 +199,7 @@ function Applicant() {
     <Box sx={style}>
       <p>
         Estás seguro que deseas eliminar al alumno{" "}
-        <span>{consolaSeleccionada && consolaSeleccionada.name} </span>?{" "}
+        <span>{consolaSeleccionada && consolaSeleccionada.name_alumno} </span>?{" "}
       </p>
       <div align="right">
         <Stack spacing={2} direction="row">
