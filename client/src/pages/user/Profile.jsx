@@ -14,6 +14,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import "./Cv.css";
 
 
@@ -32,10 +34,11 @@ export default function About() {
       <Item>
         <Grid container spacing={3}>
           <Grid item xs={3}>
-            <Item>
           <h1>Foto de perfil</h1>
-          <h5>Todas las caras son hermosas</h5>
-          <Card sx={{ maxWidth: 345 }}>
+          <h6>Todas las caras son hermosas</h6>
+          
+            <br></br>
+
             <CardMedia
             component="img"
             alt="green iguana"
@@ -44,18 +47,17 @@ export default function About() {
              />
             <CardContent>
                <Typography gutterBottom variant="h5" component="div">
-                 Lizard
+               <Button variant="contained" color="secondary">Subir fotografia</Button>
                </Typography>
-               <br></br>
-               <br></br>
+              
            </CardContent>
            
-          </Card> 
-              </Item>  
+          
+               
            </Grid>
 
           <Grid item xs={5}>
-            <Item>
+            
           <h1>Información Personal</h1>
           <h5>Es escencial al momento de venderte</h5>
             <br></br>
@@ -86,12 +88,12 @@ export default function About() {
                   </RadioGroup>
                 </FormControl>
               </Box>
-              </Item>
+              
           </Grid>
 
 
           <Grid item xs={4}>
-          <Item>
+          
           <h1>Contacto</h1>
           <h5>La comunicación es vida</h5>
               <Box
@@ -111,12 +113,12 @@ export default function About() {
                   
              </Box>
              <br></br>
-             </Item>
+             
           
           </Grid>
 
           <Grid item xs={3}>
-            <Item>
+            
           <h1>Educación</h1>
           <h5>Tu trayectora escolar</h5>
             <Box
@@ -137,11 +139,11 @@ export default function About() {
                  <TextField id="outlined-basic" label="Periodo Cursado" variant="outlined" />
                   
             </Box>
-            </Item>   
+          
            </Grid>
 
            <Grid item xs={5}>
-           <Item>
+           
            <h1>Experiencia Laboral</h1>
            <h5>Tu trayectoria laboral</h5>
             <Box
@@ -161,12 +163,12 @@ export default function About() {
                  <br></br>
                  
          </Box>
-         </Item>
+         
            </Grid>
 
 
            <Grid item xs={4}>
-             <Item>
+            
            <h1>Skills</h1>
            <h5>Complementa tu CV</h5>
             <Box
@@ -187,14 +189,38 @@ export default function About() {
                  <TextField id="outlined-basic" label="Curso 3" variant="outlined" />
                  <TextField id="outlined-basic" label="Años XP" variant="outlined" />
                  
-         </Box>
-         </Item>
-           </Grid>
+            </Box>
+          </Grid>
 
+          <Grid item xs={4}>
+               
+          </Grid>
+
+          <Grid item xs={4}>
+          <CardContent>
+          <Stack direction="row" spacing={2}>
+          <Button variant="contained" color="secondary">Guardar</Button>
+          <Button variant="contained" color="error" >Eliminar</Button>
+          </Stack> 
+              
+           </CardContent>
+          </Grid>
+
+          <Grid item xs={3}>
+          
+          </Grid>
+  
+          
+           
         </Grid>
         </Item>
       </Box>
+
+      
     </div>
+
+    
+
     
   );
   }
