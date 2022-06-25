@@ -18,7 +18,7 @@ export const routes = {
     job: "/empesa/:idJob",
     profilecompany: "/perfil/company",
     aplications: "/empresa/:idJob/postulaciones",
-    applicant: "/trabajos/postulaciones",
+    applicant: "/postulaciones",
     newJob: "/nuevoa-vacante",
   },
   admin: {
