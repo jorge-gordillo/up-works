@@ -31,9 +31,10 @@ export default function About() {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }} style={{padding:'1rem'}}>
-      <Item>
+      
         <Grid container spacing={3}>
           <Grid item xs={3}>
+          <Item>
           <h1>Foto de perfil</h1>
           <h6>Todas las caras son hermosas</h6>
           
@@ -53,11 +54,11 @@ export default function About() {
            </CardContent>
            
           
-               
+           </Item>
            </Grid>
 
           <Grid item xs={5}>
-            
+            <Item>
           <h1>Información Personal</h1>
           <h5>Es escencial al momento de venderte</h5>
             <br></br>
@@ -88,12 +89,12 @@ export default function About() {
                   </RadioGroup>
                 </FormControl>
               </Box>
-              
+              </Item>
           </Grid>
 
 
           <Grid item xs={4}>
-          
+          <Item>
           <h1>Contacto</h1>
           <h5>La comunicación es vida</h5>
               <Box
@@ -114,11 +115,11 @@ export default function About() {
              </Box>
              <br></br>
              
-          
+             </Item>
           </Grid>
 
           <Grid item xs={3}>
-            
+            <Item>
           <h1>Educación</h1>
           <h5>Tu trayectora escolar</h5>
             <Box
@@ -139,11 +140,11 @@ export default function About() {
                  <TextField id="outlined-basic" label="Periodo Cursado" variant="outlined" />
                   
             </Box>
-          
-           </Grid>
+          </Item>
+        </Grid>
 
            <Grid item xs={5}>
-           
+           <Item>
            <h1>Experiencia Laboral</h1>
            <h5>Tu trayectoria laboral</h5>
             <Box
@@ -162,13 +163,13 @@ export default function About() {
                  <TextField id="outlined-basic" label="Periodo laborado" variant="outlined" />
                  <br></br>
                  
-         </Box>
-         
+              </Box>
+              </Item>
            </Grid>
 
 
            <Grid item xs={4}>
-            
+            <Item>
            <h1>Skills</h1>
            <h5>Complementa tu CV</h5>
             <Box
@@ -190,6 +191,7 @@ export default function About() {
                  <TextField id="outlined-basic" label="Años XP" variant="outlined" />
                  
             </Box>
+            </Item>
           </Grid>
 
           <Grid item xs={4}>
@@ -213,7 +215,7 @@ export default function About() {
           
            
         </Grid>
-        </Item>
+        
       </Box>
 
       
