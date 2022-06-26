@@ -2,7 +2,7 @@
 
  Client para UpWorks, la cual es una plataforma de bolsa de trabajo para la Universidad Politécnica de Tapachula
 
-#Instalación
+# instalación
 Instalar las dependencias en la ruta principal del proyecto
 ````
 npm install
