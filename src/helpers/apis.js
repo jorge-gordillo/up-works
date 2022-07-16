@@ -1,7 +1,7 @@
 //* Contantes de las Api's
 const baseURL = 'http://localhost:4000/api/v1'
 export const apis = {
-	singIn: `${baseURL}/auth/login`,
+	singIn: `${baseURL}/login`,
 	passwordReset: ``,
 	getData: (role) => `${baseURL}/${role}`,
 	regular: {
