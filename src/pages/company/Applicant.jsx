@@ -25,7 +25,7 @@ import {
 } from "@mui/material";
 
 //url de api fake y rikolino
-const CoUrl = "http://localhost:3001/applicant/";
+const CoUrl = "http://localhost:8000/";
 
 //Alertas
 const Alert = Swal.mixin({
