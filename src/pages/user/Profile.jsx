@@ -1,230 +1,127 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import TextField from '@mui/material/TextField';
-//import senuez from '../assets/img/senuez.jpeg';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import "./Cv.css";
+import {useState } from "react";
+import axios from "axios";
+import {
+  Chip,
+  Grid,
+  Card,
+  CardContent,
+  Avatar,
+  Typography,
+} from "@mui/material";
+import RoomIcon from "@mui/icons-material/Room";
 
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
-export default function About() {
-  return (
-    <div>
-      <Box sx={{ flexGrow: 1 }} style={{padding:'1rem'}}>
-      
-        <Grid container spacing={3}>
-          <Grid item xs={3}>
-          <Item>
-          <h1>Foto de perfil</h1>
-          <h6>Todas las caras son hermosas</h6>
-          
-            <br></br>
-
-            <CardMedia
-            component="img"
-            alt="green iguana"
-            height="140"
-            image="https://wl-genial.cf.tsp.li/resize/728x/jpg/91b/430/964a9c5ac9933cc012d0bd80be.jpg"
-             />
-            <CardContent>
-               <Typography gutterBottom variant="h5" component="div">
-               <Button variant="contained" color="secondary">Subir fotografia</Button>
-               </Typography>
-              
-           </CardContent>
-           
-          
-           </Item>
-           </Grid>
-
-          <Grid item xs={5}>
-            <Item>
-          <h1>Información Personal</h1>
-          <h5>Es escencial al momento de venderte</h5>
-            <br></br>
-            
-           
-            <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: '35ch' },
-                 }}
-                  noValidate
-                 autoComplete="off"
-               >
-                 <TextField id="outlined-basic" label="Nombre completo" variant="outlined" />
-                 <TextField id="outlined-basic" label="Edad" variant="outlined" />
-                 
-                 <br></br>
-                 <TextField id="outlined-basic" label="Lugar de Nacimiento" variant="outlined" />
-                 <FormControl>
-                  <FormLabel id="demo-row-radio-buttons-group-label">Género</FormLabel>
-                  <RadioGroup
-                   row
-                   aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="row-radio-buttons-group"
-                    >
-                  <FormControlLabel value="Masculino" control={<Radio />} label="Masculino" /> 
-                  <FormControlLabel value="Femenino" control={<Radio />} label="Femenino" />
-                  </RadioGroup>
-                </FormControl>
-              </Box>
-              </Item>
-          </Grid>
+const CoUrl = "http://localhost:8000/api/v1/alumns/";
 
 
-          <Grid item xs={4}>
-          <Item>
-          <h1>Contacto</h1>
-          <h5>La comunicación es vida</h5>
-              <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: '35ch' },
-                 }}
-                  noValidate
-                 autoComplete="off"
-               >
-                 <TextField id="outlined-basic" label="Correo Electronico Escolar:" variant="outlined" />
-
-                 <TextField id="outlined-basic" label="Correo Electronico Personal:" variant="outlined" />
-                 <br></br>
-                 <TextField id="outlined-basic" label="Telefono Fijo:" variant="outlined" />
-                 <TextField id="outlined-basic" label="Telefono Móvil:" variant="outlined" />  
-                  
-             </Box>
-             <br></br>
-             
-             </Item>
-          </Grid>
-
-          <Grid item xs={3}>
-            <Item>
-          <h1>Educación</h1>
-          <h5>Tu trayectora escolar</h5>
-            <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: '23ch' },
-                 }}
-                  noValidate
-                 autoComplete="off"
-               >
-                
-                 <TextField id="outlined-basic" label="Ultimo instituto cursado" variant="outlined" />
-                 <br></br>
-                 <TextField id="outlined-basic" label="Carrera Cursada" variant="outlined" />
-                 <br></br>
-                 <TextField id="outlined-basic" label="Titulado o Pasante" variant="outlined" />
-                 <br></br>
-                 <TextField id="outlined-basic" label="Periodo Cursado" variant="outlined" />
-                  
-            </Box>
-          </Item>
-        </Grid>
-
-           <Grid item xs={5}>
-           <Item>
-           <h1>Experiencia Laboral</h1>
-           <h5>Tu trayectoria laboral</h5>
-            <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: '35ch' },
-                 }}
-                  noValidate
-                 autoComplete="off"
-               >
-                
-                 <TextField id="outlined-basic" label="¿Haz Trabajado?" variant="outlined" />
-                 <br></br>
-                 <TextField id="outlined-basic" label="Descripción de su ultimo trabajo" variant="outlined" />
-                 <br></br>
-                 <TextField id="outlined-basic" label="Periodo laborado" variant="outlined" />
-                 <br></br>
-                 
-              </Box>
-              </Item>
-           </Grid>
-
-
-           <Grid item xs={4}>
-            <Item>
-           <h1>Skills</h1>
-           <h5>Complementa tu CV</h5>
-            <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: '15ch' },
-                 }}
-                  noValidate
-                 autoComplete="off"
-               >
-                
-                 <TextField id="outlined-basic" label="Curso 1" variant="outlined" />
-                 <TextField id="outlined-basic" label="Años XP" variant="outlined" />
-                 <br></br>
-                 <TextField id="outlined-basic" label="Curso 2" variant="outlined" />
-                 <TextField id="outlined-basic" label="Años XP" variant="outlined" />
-                 <br></br>
-                 <TextField id="outlined-basic" label="Curso 3" variant="outlined" />
-                 <TextField id="outlined-basic" label="Años XP" variant="outlined" />
-                 
-            </Box>
-            </Item>
-          </Grid>
-
-          <Grid item xs={4}>
-               
-          </Grid>
-
-          <Grid item xs={4}>
-          <CardContent>
-          <Stack direction="row" spacing={2}>
-          <Button variant="contained" color="secondary">Guardar</Button>
-          <Button variant="contained" color="error" >Eliminar</Button>
-          </Stack> 
-              
-           </CardContent>
-          </Grid>
-
-          <Grid item xs={3}>
-          
-          </Grid>
+ 
+export default function Profile() {
   
-          
-           
+  fetch("http://localhost:8000/api/v1/alumns/", { 
+    method: "GET",  
+  }).then(function(response) {
+    return response.text();
+  }).then(function(data) {
+    console.log("Mira",data);
+  })
+  const [data, setData] = useState([]);
+  //selecion de datos
+  const [selecAl, setselecAl] = useState({
+   
+  });
+  //captura de datos
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setselecAl((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+ 
+    console.log("Mira: ", selecAl);
+  };
+  //metodo de get para pedir los datos de la api
+  const peticionGet = async () => {
+    await axios
+      .get(CoUrl)
+      .then((response) => {
+        setData(response.data);
+        console.log("Peticion GET");
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        Alert.fire({
+          icon: "error",
+          title: "Ups.. Algo salio mal!",
+        });
+      });
+  };
+  return (
+    <>
+      <Grid container spacing={3} sx={{ pt: 3 }}>
+        <Grid item xs={12} md={4}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Card sx={{ textAlign: "center" }}>
+                <CardContent>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="https://www.bing.com/th?id=AMMS_234d7638413b734c1560bf8e7f642960&w=110&h=110&c=7&rs=1&qlt=95&pcl=f9f9f9&o=6&cdv=1&pid=16.1"
+                    sx={{ width: 160, height: 160, mx: "auto", my: 2.5 }}
+                  />
+                  <Typography variant="h6" color="black">
+                    
+                  </Typography>
+                  {data.map((selecAl) => ( 
+                  <Typography variant="caption" color="text.secondary" key={selecAl.id}>
+                    {selecAl.name}
+                  </Typography>))
+                  }
+                 
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
         </Grid>
-        
-      </Box>
+        <Grid item xs={12} md={8}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Card sx={{ p: 1 }}>
+                <CardContent>
+                  <Typography
+                    variant="h1"
+                    color="initial"
+                    sx={{ fontSize: 20, mb: 1.8 }}
+                  >
+                   XD
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary">
+                    Fundación: 
+                  </Typography>
 
-      
-    </div>
-
-    
-
-    
+                  <Chip
+                    icon={<RoomIcon />}
+                    label="Ubicacion"
+                    component="a"
+                    href="#"
+                    variant="outlined"
+                    clickable
+                  />
+                  <Chip
+                    icon={<RoomIcon />}
+                    label="Direccion"
+                    component="a"
+                    href="#"
+                    variant="outlined"
+                    clickable
+                  />
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </>
   );
-  }
-
-
+}
