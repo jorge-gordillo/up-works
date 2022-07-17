@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
 
 	const login = (token) => {
 		setUser({ ...token })
-		// getUser(token.role, token.token)
+	    getUser(token.role, token.token)
 	}
 
 	const logout = () => {
