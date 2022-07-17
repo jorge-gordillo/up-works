@@ -10,10 +10,6 @@ export const apis = {
 		title: `${baseURL}/regular/title`,
 		setData: ``,
 	},
-	admin: {
-		regular: `${baseURL}/admin/regular`,
-		conpany: `${baseURL}/admin/company`,
-	},
 	company: {
 		getUser: ``,
 		setData: ``,

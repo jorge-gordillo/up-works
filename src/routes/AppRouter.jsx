@@ -23,10 +23,6 @@ import Profilecompany from '../pages/company/Profilecompany'
 /* import Application from "../pages/company/Application" */
 import Applicant from "../pages/company/Applicant"
 
-
-import Users from "../pages/admin/Users"
-import Business from '../pages/admin/Business'
-
 const AppRouter = () => {
 
    return (
@@ -62,12 +58,6 @@ const AppRouter = () => {
 
                {/* <Route path='vacante/:idJob/postulaciones' element={<Application />} /> */}
                {/*  <Route path='nueva-vacante' element={<NewJob />} /> */}
-            </Route>
-
-            {/* Rutas protegidas usuario Admin */}
-            <Route path='admin/' element={<PrivateRoute hasRole='admin' />} >
-               <Route path='usuarios' element={<Users />} />
-               <Route path='empresas' element={<Business />} />
             </Route>
 
             {/* Catch all */}

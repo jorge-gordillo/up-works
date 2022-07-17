@@ -21,8 +21,4 @@ export const routes = {
     applicant: "/postulaciones",
     newJob: "/nuevoa-vacante",
   },
-  admin: {
-    users: "/admin/usuarios",
-    business: "/admin/empresas",
-  },
 };
