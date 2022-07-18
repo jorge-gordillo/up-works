@@ -36,17 +36,25 @@ const Login = () => {
          const token = await loginWhitEmail(email, password)
          if (token.error) throw Error(token.error.msg)
          login({ ...token.data })
+		 localStorage.setItem('token', token.data.token);
+		 localStorage.setItem('id',(token.data.id));
+		 localStorage.setItem('photo',(token.data.photo));
+		 localStorage.setItem('name',(token.data.name));
+
          console.log({...token.data});
          setEmail('')
          setPassword('')
 		 setLoading(false)
          navigate(from, { replace: true })
+		 
       } catch (e) {
          console.log(e);
          setErrMsg(e.message)
          setLoading(false)
       }
+	  
    }
+   
 
    return (
       <>
@@ -104,8 +112,8 @@ const Login = () => {
 				</Card>
 			</Col>
       </Row>
-	  
       </>
+	  
    )
 }
 
