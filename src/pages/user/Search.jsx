@@ -12,20 +12,26 @@ import {
   Chip,
   Avatar,
   Box,
+  Button,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import RoomIcon from "@mui/icons-material/Room";
+import SendIcon from '@mui/icons-material/Send';
 import "./Search.css";
 import axios from "axios";
 
 //url de api fake y rikolino
 const CoUrl = "http://127.0.0.1:8000/api/v1/jobs/";
-const CoUrlT = "http://127.0.0.1:8000/api/v1/companies/";
+const ApUrl = `http://127.0.0.1:8000/api/v1/applications/`;
 
 export default function Search() {
   const [data, setData] = useState([]);
-  const [Search,setSearch] = useState("");
-
+  const [Search,setSearch] = useState(null);
+  const [applic] = useState({
+    id: "",
+    cv: "",
+    id_job: "",
+  });
   function getNameCompany() {
     return window.localStorage.getItem("name");
   }
@@ -46,10 +52,33 @@ export default function Search() {
       });
   };
 
-  const handleSearch= e => {
+  const handleSearch=e=> {
       setSearch(e.target.value);
       filter(e.target.value);
       console.log(e.target.value);
+      if(e.target.value===""){
+        peticionGet();
+      }
+      
+  }
+  const peticionPost = async () => {
+    await axios
+      .post(ApUrl, applic)
+      .then((response) => {
+        console.log("Pedro mira:", applic);
+        getId_Company();
+        setData(data.concat(applic));
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    /* applic.push(); */
+    peticionPost();
+    console.log("Envio...");
   }
 
   const filter=(termSearch)=>{
@@ -59,15 +88,11 @@ export default function Search() {
          || element.job_type.toLowerCase().includes(termSearch.toLowerCase()) 
          || element.workplace.toLowerCase().includes(termSearch.toLowerCase())){
         return element;
-      }else{
-         if(termSea){
-            console.log("entre");
-            return element;
-         }
       }
     });
     setData(dataFiltered);
   }
+  
 
   useEffect(async () => {
     await peticionGet();
@@ -77,16 +102,11 @@ export default function Search() {
     <>
       <Container maxWidth="sm">
         <br/>
-        <h1 >Ubica un trabajo</h1>
+        <h1 >Ubica tu proximo trabajo !</h1>
         <Grid container spacing={1}>
           <Grid item>
-            <FormControl sx={{ m: 1, minWidth: 400 }}>
-              <TextField label="Puesto o Empresa" value={Search} placeholder="Ingresa el nombre del trabajo o la empresa" color="secondary" onChange={handleSearch} focused/>
-            </FormControl>
-            <FormControl sx={{ m: 1, minWidth: 50 }}>
-              <Fab color="secondary" variant="extended">
-                <SearchIcon sx={{ mr: 3 }} /> 
-              </Fab>
+            <FormControl sx={{ m: 1, minWidth: 500   }}>
+              <TextField label="Buscar" value={Search} placeholder="Ingresa la compañia o (Nombre/Lugar/Tipo) De Trabajo" color="secondary" onChange={handleSearch} focused/>
             </FormControl>
           </Grid>
         </Grid>
@@ -140,6 +160,9 @@ export default function Search() {
                       <Typography variant="subtitle1" component="div">
                         Empresa: {job.company.name}
                       </Typography>
+                      <Button  variant="contained" endIcon={<SendIcon />} onChange={handleSubmit}>
+                    Postularme
+                  </Button> 
                     </Grid>
                   </Grid>
                 </Grid>

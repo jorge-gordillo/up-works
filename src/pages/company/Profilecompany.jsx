@@ -15,11 +15,10 @@ export default function Profilecompany() {
   const [data, setData] = useState([]);
   const CoUrl = "http://127.0.0.1:8000/api/v1/companies";
 
-  //consumiendo api con fetch
+  
   function getoken() {
     return window.localStorage.getItem("token");
   }
- 
   function getId() {
     return window.localStorage.getItem("id");
   }
@@ -29,11 +28,11 @@ export default function Profilecompany() {
   function getPhoto() {
     return window.localStorage.getItem("photo");
   }
+ 
   console.log("ID =" + getId());
   console.log("NAME =" + getName());
   console.log("TOKEN =", getoken());
-
-
+  
 
   const headersList = {
     Accept: "*/*",

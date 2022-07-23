@@ -54,8 +54,6 @@ function Applications() {
       description_p: "",
     })
 
-  
- 
    const peticionGet = async () => {
      await axios.get(CoUrl)
        .then(response => {

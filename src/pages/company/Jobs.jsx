@@ -88,7 +88,7 @@ export default function Jobs() {
     status: "",
     id_company: getId_Company(),
   });
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setJobSelec((prevState) => ({
@@ -97,15 +97,15 @@ export default function Jobs() {
     }));
     console.log(jobSelec);
   };
-
+  
   const peticionGet = async () => {
     await axios
       .get(CoUrl)
       .then((response) => {
         response.data.data.forEach((element) => console.log(element));
         setData(response.data.data);
-        localStorage.setItem("id_company", response.data.data[0].id_company);
-        console.log("ID Company =" + response.data.data[0].id_company);
+        localStorage.setItem("id_company", response.data.data[0].company.id);
+        console.log("ID Company =" + response.data.data[0].company.id);
       })
       .catch((error) => {
         console.log(error.message);
@@ -131,7 +131,8 @@ export default function Jobs() {
   };
 
   const peticionPut = async () => {
-    await axios.put(CoUrlT + jobSelec.id +"/", jobSelec).then((response) => {
+    console.log(CoUrlT + jobSelec.id +"/", jobSelec);
+    await axios.put(CoUrlT + jobSelec.company.id +"/", jobSelec).then((response) => {
       var dataNueva = data;
       dataNueva.map((job) => {
         if (jobSelec.id === job.id) {
@@ -152,6 +153,7 @@ export default function Jobs() {
       });
     });
   };
+
 
   const peticionDelete = async () => {
     await axios.delete(CoUrlT + jobSelec.id +"/"  ).then((response) => {
