@@ -1,39 +1,38 @@
-import { api } from "../helpers";
+import { api } from '../helpers'
 
 export const loginWhitEmail = async (email, password) => {
-    var myHeaders = new Headers()
-    myHeaders.append("Content-Type", "application/json")
+	var myHeaders = new Headers()
+	myHeaders.append('Content-Type', 'application/json')
 
-    var raw = JSON.stringify({
-        email,
-        password
-    })
+	var raw = JSON.stringify({
+		email,
+		password,
+	})
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    }
+	var requestOptions = {
+		method: 'POST',
+		headers: myHeaders,
+		body: raw,
+		redirect: 'follow',
+	}
 
-    const res = await fetch(api.singIn, requestOptions)
-    const token = await res.json()
-    return token
-
+	const res = await fetch(api.singIn, requestOptions)
+	const token = await res.json()
+	return token
 }
 
-export const getData = async(role, token) => {
-    var myHeaders = new Headers();
-    myHeaders.append("x-access-token", token);
+export const getData = async (role, token) => {
+	var myHeaders = new Headers()
+	myHeaders.append('x-access-token', token)
 
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
+	var requestOptions = {
+		method: 'GET',
+		headers: myHeaders,
+		redirect: 'follow',
+	}
 
-    const res = await fetch(api.getData(role), requestOptions)
-    const user = await res.json()
-    if (user.error) throw Error(user.error.message)
-    return user
+	const res = await fetch(api.getData(role), requestOptions)
+	const user = await res.json()
+	if (user.error) throw Error(user.error.message)
+	return user
 }

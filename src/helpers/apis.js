@@ -14,4 +14,4 @@ export const apis = {
 		getUser: ``,
 		setData: ``,
 	},
-};
+}
