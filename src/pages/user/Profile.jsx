@@ -22,11 +22,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AirplaneTicketOutlinedIcon from "@mui/icons-material/AirplaneTicketOutlined";
 import DownloadIcon from '@mui/icons-material/Download';
 
- 
 
 export default function Profile() {
   const [data, setData] = useState([]);
-  const CoUrl = "http://localhost:8000/api/v1/alumns";
+  const CoUrl = "http://127.0.0.1:8000/api/v1/alumns";
 
   //consumiendo api con fetch
   function getoken() {
@@ -51,7 +50,7 @@ export default function Profile() {
   };
   const peticionGet = async () => {
     axios
-      .get(`http://localhost:8000/api/v1/alumns/${getId()}/`, {
+      .get(`http://127.0.0.1:8000/api/v1/alumns/${getId()}/`, {
         headers: {
           Accept: "*/*",
           Authorization: `Bearer ${getoken()}`,
@@ -87,7 +86,7 @@ if (data.relocate) {
                 <CardContent>
                   <Avatar
                     alt="Remy Sharp"
-                    src={`http://localhost:8000/api/v1${getPhoto()}`}
+                    src={`http://127.0.0.1:8000${getPhoto()}/`}
                     sx={{ width: 160, height: 160, mx: "auto", my: 2.5 }}
                   />
                   <Typography variant="h6" color="black">

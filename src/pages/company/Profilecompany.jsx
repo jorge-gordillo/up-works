@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Chip,
   Grid,
@@ -8,8 +9,55 @@ import {
   Typography,
 } from "@mui/material";
 import RoomIcon from "@mui/icons-material/Room";
+import FlagIcon from '@mui/icons-material/Flag';
 
 export default function Profilecompany() {
+  const [data, setData] = useState([]);
+  const CoUrl = "http://127.0.0.1:8000/api/v1/companies";
+
+  //consumiendo api con fetch
+  function getoken() {
+    return window.localStorage.getItem("token");
+  }
+ 
+  function getId() {
+    return window.localStorage.getItem("id");
+  }
+  function getName() {
+    return window.localStorage.getItem("name");
+  }
+  function getPhoto() {
+    return window.localStorage.getItem("photo");
+  }
+  console.log("ID =" + getId());
+  console.log("NAME =" + getName());
+  console.log("TOKEN =", getoken());
+
+
+
+  const headersList = {
+    Accept: "*/*",
+    Authorization: `Bearer ${getoken()}`,
+  };
+  const peticionGet = async () => {
+    axios.get(`http://127.0.0.1:8000/api/v1/companies/${getId()}/`, {
+        headers: {
+          Accept: "*/*",
+          Authorization: `Bearer ${getoken()}`,
+        },
+      })
+      .then((res) => {
+        setData(res.data); //seteando data
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  useEffect(async () => {
+    await peticionGet();
+  }, []);
+
   return (
     <>
       <Grid container spacing={3} sx={{ pt: 3 }}>
@@ -20,11 +68,11 @@ export default function Profilecompany() {
                 <CardContent>
                   <Avatar
                     alt="Remy Sharp"
-                    src="https://www.bing.com/th?id=AMMS_234d7638413b734c1560bf8e7f642960&w=110&h=110&c=7&rs=1&qlt=95&pcl=f9f9f9&o=6&cdv=1&pid=16.1"
+                    src={`http://127.0.0.1:8000${getPhoto()}/`}
                     sx={{ width: 160, height: 160, mx: "auto", my: 2.5 }}
                   />
                   <Typography variant="h6" color="black">
-                    Amazon
+                  {getName()}
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
                     Compañia
@@ -47,12 +95,12 @@ export default function Profilecompany() {
                     Sobre Nosotros
                   </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    Fundación: 
+                    Fundación: {data.birthday}
                   </Typography>
 
                   <Chip
-                    icon={<RoomIcon />}
-                    label="Ubicacion"
+                    icon={<FlagIcon />}
+                    label={data.country}
                     component="a"
                     href="#"
                     variant="outlined"
@@ -60,7 +108,7 @@ export default function Profilecompany() {
                   />
                   <Chip
                     icon={<RoomIcon />}
-                    label="Direccion"
+                    label={data.address}
                     component="a"
                     href="#"
                     variant="outlined"
